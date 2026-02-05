@@ -7,7 +7,4 @@ __pycache__/
 .venv
 env/
 
-# Vector DB / embeddings
-vector_db/
-chroma.sqlite3
-*.bin
+
