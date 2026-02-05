@@ -1,17 +1,3 @@
-# from fastapi import FastAPI
-# from pydantic import BaseModel
-# from rag import answer_question
-
-# app = FastAPI(title="Sharvari Portfolio AI")
-
-# class ChatRequest(BaseModel):
-#     query: str
-
-# @app.post("/chat")
-# def chat(req: ChatRequest):
-#     answer = answer_question(req.query)
-#     return {"answer": answer}
-
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -47,3 +33,7 @@ def chat(req: ChatRequest):
 @app.get("/health")
 def health():
     return {"status": "healthy"}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
