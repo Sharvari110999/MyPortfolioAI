@@ -21,7 +21,8 @@ DB_DIR = BASE_DIR / "vector_db"
 # ----------------------------
 def load_vectorstore(rebuild: bool = False):
     embeddings = HuggingFaceEmbeddings(
-        model_name="all-MiniLM-L6-v2"
+        model_name="all-MiniLM-L6-v2",
+        model_kwargs={"device": "cpu"}
     )
 
     # Reuse existing DB unless explicitly rebuilding

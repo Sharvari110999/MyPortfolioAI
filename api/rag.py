@@ -36,10 +36,21 @@ Instructions:
 - If the question asks for a list or count, provide it explicitly.
 - Do not add information beyond the context.
 """
-# Load once (important)
-vectorstore = load_vectorstore()
+# rag.py
+
+_vectorstore = None
+
+def get_vectorstore():
+    global _vectorstore
+    if _vectorstore is None:
+        #print("🔹 Loading vectorstore lazily...")
+        _vectorstore = load_vectorstore()
+    return _vectorstore
+
 
 def answer_question(query: str) -> str:
+    vectorstore = get_vectorstore()   # ✅ loaded only on first request
+
     docs = vectorstore.similarity_search(query, k=5)
     context = "\n\n".join(doc.page_content for doc in docs)
 
@@ -60,3 +71,4 @@ def answer_question(query: str) -> str:
     )
 
     return response.choices[0].message.content.strip()
+
