@@ -1,1 +1,13 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Environments
 .env
+.venv
+env/
+
+# Vector DB / embeddings
+vector_db/
+chroma.sqlite3
+*.bin
